@@ -353,7 +353,9 @@ tbody td:last-child {
     </table>
   </div>
   </div> 
-
+<script>
+  const API_URL = "<?php echo getenv('API_URL'); ?>";
+</script>
   <script>
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -507,7 +509,8 @@ function carregarMapaELocalizacao() {
 
       L.marker([lat, lon]).addTo(map).bindPopup('Você está aqui!').openPopup();
     
-      fetch(`http://localhost:8080/get_pollutitions?lat=${lat}&lon=${lon}`)
+    
+       fetch(`${API_URL}/get_pollutitions?lat=${lat}&lon=${lon}`)
         .then(response => response.json())
         .then(data => {
           const components = data.data.list[0].components;
