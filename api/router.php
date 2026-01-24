@@ -11,8 +11,11 @@ use Rafael\RespiraBem\services\HttpClient;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+// carrega .env apenas se existir (local)
+if (file_exists(__DIR__ . '/../.env')) {
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+    $dotenv->load();
+}
 
 $app = AppFactory::create();
 
