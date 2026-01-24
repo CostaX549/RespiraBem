@@ -10,10 +10,10 @@ use Dotenv\Dotenv;
 
 // autoload agora aponta direto para vendor (raiz)
 require __DIR__ . '/vendor/autoload.php';
-
-// carrega .env da raiz
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}
 
 $app = AppFactory::create();
 
